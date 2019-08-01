@@ -1,4 +1,10 @@
+import sys, os
 from flask import Blueprint, jsonify
+
+sys.path.append('/')
+sys.path.append('..')
+
+from core import get_smartphones_query as get_smartphones_query
 
 main = Blueprint('main', __name__)
 
@@ -8,6 +14,5 @@ def add_smartphone():
 
 @main.route('/get_smartphones', methods=['GET'])
 def get_smartphones():
-
-	smartphones = []
-	return jsonify({'smartphones' : smartphones})
+	smartphones = get_smartphones_query.main()
+	return jsonify({'smartphones': smartphones})
