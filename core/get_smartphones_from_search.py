@@ -3,7 +3,6 @@ import core.config as config
 
 def main(smartphone_data):
     first_letters = smartphone_data["name"]
-    first_letters = "one"
     sparql = SPARQLWrapper(config.graphDB_select_link)
     sparql.setQuery("""
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -12,7 +11,7 @@ def main(smartphone_data):
             ?s rdf:type :Smartphone .
             ?s :Device_name ?name .
             FILTER regex(?name, '"""+first_letters+"""', "i")
-        } limit 100
+        }
     """)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()

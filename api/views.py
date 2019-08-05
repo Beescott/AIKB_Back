@@ -9,6 +9,10 @@ from core import get_smartphones_from_search as get_smartphones_from_search
 
 main = Blueprint('main', __name__)
 
+@main.route('/')
+def index():
+	return "Hello!"
+
 @main.route('/add_smartphone', methods=['POST'])
 def add_smartphone():
 	return 'Done', 201
