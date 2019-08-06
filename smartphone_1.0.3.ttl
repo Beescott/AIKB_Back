@@ -1,0 +1,170 @@
+@prefix : <http://www.infotel.com/ontology/smartphone#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.infotel.com/ontology/smartphone> .
+
+<http://www.infotel.com/ontology/smartphone> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.infotel.com/ontology/smartphone#canConnectTo
+:canConnectTo rdf:type owl:ObjectProperty ;
+              rdfs:domain :Device ;
+              rdfs:range :Device ;
+              owl:propertyChainAxiom ( :hasConnectivity
+                                       :versionOf
+                                       :version
+                                       :isConnectivityOf
+                                     ) .
+
+
+###  http://www.infotel.com/ontology/smartphone#hasConnectivity
+:hasConnectivity rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasFeature ;
+                 owl:inverseOf :isConnectivityOf ;
+                 rdfs:domain :Device ;
+                 rdfs:range :Feature_Of_Interest .
+
+
+###  http://www.infotel.com/ontology/smartphone#hasFeature
+:hasFeature rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isFeatureOf ;
+            rdfs:domain :Device ;
+            rdfs:range :Feature_Of_Interest .
+
+
+###  http://www.infotel.com/ontology/smartphone#isConnectivityOf
+:isConnectivityOf rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :isFeatureOf .
+
+
+###  http://www.infotel.com/ontology/smartphone#isFeatureOf
+:isFeatureOf rdf:type owl:ObjectProperty ;
+             rdfs:domain :Feature_Of_Interest ;
+             rdfs:range :Device .
+
+
+###  http://www.infotel.com/ontology/smartphone#version
+:version rdf:type owl:ObjectProperty ;
+         owl:inverseOf :versionOf ;
+         rdfs:domain :Connectivity ,
+                     :Feature_Of_Interest ;
+         rdfs:range :Connectivity .
+
+
+###  http://www.infotel.com/ontology/smartphone#versionOf
+:versionOf rdf:type owl:ObjectProperty ;
+           rdfs:domain :Connectivity ;
+           rdfs:range :Connectivity .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.infotel.com/ontology/smartphone#name
+:name rdf:type owl:DatatypeProperty ;
+      rdfs:range xsd:string .
+
+
+###  http://www.infotel.com/ontology/smartphone#version
+:version rdf:type owl:DatatypeProperty ;
+         rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.infotel.com/ontology/smartphone#Bluetooth
+:Bluetooth rdf:type owl:Class ;
+           rdfs:subClassOf :Connectivity .
+
+
+###  http://www.infotel.com/ontology/smartphone#Connectivity
+:Connectivity rdf:type owl:Class ;
+              rdfs:subClassOf :Feature_Of_Interest .
+
+
+###  http://www.infotel.com/ontology/smartphone#Device
+:Device rdf:type owl:Class ;
+        owl:disjointWith :Feature_Of_Interest .
+
+
+###  http://www.infotel.com/ontology/smartphone#Edge_4G
+:Edge_4G rdf:type owl:Class ;
+         rdfs:subClassOf :Connectivity .
+
+
+###  http://www.infotel.com/ontology/smartphone#Feature_Of_Interest
+:Feature_Of_Interest rdf:type owl:Class .
+
+
+###  http://www.infotel.com/ontology/smartphone#Frequency
+:Frequency rdf:type owl:Class ;
+           rdfs:subClassOf :Connectivity .
+
+
+###  http://www.infotel.com/ontology/smartphone#GPS
+:GPS rdf:type owl:Class ;
+     rdfs:subClassOf :Connectivity .
+
+
+###  http://www.infotel.com/ontology/smartphone#Jack_cable
+:Jack_cable rdf:type owl:Class ;
+            rdfs:subClassOf :Connectivity .
+
+
+###  http://www.infotel.com/ontology/smartphone#NFC
+:NFC rdf:type owl:Class ;
+     rdfs:subClassOf :Connectivity .
+
+
+###  http://www.infotel.com/ontology/smartphone#OS
+:OS rdf:type owl:Class ;
+    rdfs:subClassOf :Connectivity .
+
+
+###  http://www.infotel.com/ontology/smartphone#Radio
+:Radio rdf:type owl:Class ;
+       rdfs:subClassOf :Connectivity .
+
+
+###  http://www.infotel.com/ontology/smartphone#Smartphone
+:Smartphone rdf:type owl:Class ;
+            rdfs:subClassOf :Device .
+
+
+###  http://www.infotel.com/ontology/smartphone#Tablet
+:Tablet rdf:type owl:Class ;
+        rdfs:subClassOf :Device .
+
+
+###  http://www.infotel.com/ontology/smartphone#USB_cable
+:USB_cable rdf:type owl:Class ;
+           rdfs:subClassOf :Connectivity .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Bluetooth
+                :Edge_4G
+                :Frequency
+                :GPS
+                :Jack_cable
+                :NFC
+                :Radio
+                :USB_cable
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
