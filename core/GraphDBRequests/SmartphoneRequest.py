@@ -29,7 +29,9 @@ def insert_phone(formated_phone):
             if information in formated_phone.formated_version:
                 insert_query_string += ':{} rdf:type :{} .\n'.format(
                     formated_phone.formated_version[information], information)
-                insert_query_string += ':{} :version "{}" .\n'.format(
+                insert_query_string += ':{} :versionOf :{} .\n'.format(
+                    formated_phone.formated_version[information], information)
+                insert_query_string += ':{} :versionName "{}" .\n'.format(
                     formated_phone.formated_version[information],
                     formated_phone.formated_connectivities[information]
                 )
@@ -40,7 +42,7 @@ def insert_phone(formated_phone):
                 insert_query_string += ':{} :hasConnectivity :{} . \n'.format(phone_name_sql, information)
 
     insert_query_string += '}'
-
+    print(insert_query_string)
     sparql_insert_wrapper = config.graphDB_insert_link
 
     sparql = SPARQLWrapper(sparql_insert_wrapper)

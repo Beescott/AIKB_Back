@@ -9,7 +9,7 @@ def main():
 		select ?name where {
 			?s rdf:type :Smartphone .
 		    ?s :Device_name ?name
-		} limit 100
+		}
 	""")
 	sparql.setReturnFormat(JSON)
 	results = sparql.query().convert()

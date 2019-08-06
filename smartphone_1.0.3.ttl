@@ -13,7 +13,8 @@
 #################################################################
 
 ###  http://www.infotel.com/ontology/smartphone#canConnectTo
-:canConnectTo rdf:type owl:ObjectProperty ;
+:canConnectTo rdf:type owl:ObjectProperty ,
+                       owl:SymmetricProperty ;
               rdfs:domain :Device ;
               rdfs:range :Device ;
               owl:propertyChainAxiom ( :hasConnectivity
@@ -52,15 +53,16 @@
 ###  http://www.infotel.com/ontology/smartphone#version
 :version rdf:type owl:ObjectProperty ;
          owl:inverseOf :versionOf ;
-         rdfs:domain :Connectivity ,
-                     :Feature_Of_Interest ;
-         rdfs:range :Connectivity .
+         rdfs:domain :Feature_Of_Interest ;
+         rdfs:range :Feature_Of_Interest .
+
+
+###  http://www.infotel.com/ontology/smartphone#versionName
+:versionName rdf:type owl:ObjectProperty .
 
 
 ###  http://www.infotel.com/ontology/smartphone#versionOf
-:versionOf rdf:type owl:ObjectProperty ;
-           rdfs:domain :Connectivity ;
-           rdfs:range :Connectivity .
+:versionOf rdf:type owl:ObjectProperty .
 
 
 #################################################################
