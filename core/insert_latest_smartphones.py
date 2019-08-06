@@ -18,6 +18,6 @@ def main(argv=None):
     #         # Insert smartphone inside GraphDB
             SmartphoneRequest.insert_phone(smartphone)
 
-            print("Smartphone successfully added to database")
+            print(phone["DeviceName"] + " successfully added to database")
         except Exception as e:
             print(e)

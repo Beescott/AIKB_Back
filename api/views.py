@@ -6,6 +6,7 @@ sys.path.append('..')
 
 from core import get_smartphones_query as get_smartphones_query
 from core import get_smartphones_from_search as get_smartphones_from_search
+from core import insert_latest_smartphones as insert_latest_smartphones
 
 main = Blueprint('main', __name__)
 
@@ -27,3 +28,8 @@ def get_smartphones_from_field():
 	smartphone_data = request.get_json()
 	smartphones = get_smartphones_from_search.main(smartphone_data)
 	return jsonify({'smartphones': smartphones})
+
+@main.route('/insert_smartphones', methods=['POST'])
+def insert_smartphones():
+	insert_latest_smartphones.main()
+	return 'Done'
