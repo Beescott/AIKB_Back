@@ -22,6 +22,7 @@ def insert_phone(formated_phone):
 
     # Add the name of the smartphone
     insert_query_string += ':{} :Device_name "{}"'.format(phone_name_sql, formated_phone.name) + ' .\n'
+    insert_query_string += ':{} :deviceId "{}"'.format(phone_name_sql, phone_name_sql) + ' .\n'
 
     for information in formated_phone.formated_connectivities:
         # if the device has the connectivity
@@ -42,7 +43,6 @@ def insert_phone(formated_phone):
                 insert_query_string += ':{} :hasConnectivity :{} . \n'.format(phone_name_sql, information)
 
     insert_query_string += '}'
-    print(insert_query_string)
     sparql_insert_wrapper = config.graphDB_insert_link
 
     sparql = SPARQLWrapper(sparql_insert_wrapper)

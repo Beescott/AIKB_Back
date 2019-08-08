@@ -6,9 +6,10 @@ def main():
 	sparql.setQuery("""
 	    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 		PREFIX : <http://www.infotel.com/ontology/smartphone#>
-		select ?name where {
+		select ?name ?id where {
 			?s rdf:type :Smartphone .
-		    ?s :Device_name ?name
+			?s :Device_name ?name .
+			?s :deviceId ?id
 		}
 	""")
 	sparql.setReturnFormat(JSON)
@@ -20,6 +21,6 @@ def main():
 def getNamesFromQuery(results):
 	smartphone_names = []
 	for smartphone in results["results"]["bindings"]:
-		smartphone_names.append(smartphone["name"]["value"])
+		smartphone_names.append({"name": smartphone["name"]["value"], "id": smartphone["id"]["value"]})
 
 	return smartphone_names
