@@ -38,5 +38,5 @@ def insert_smartphones():
 @main.route('/get_compatible_smartphones_with_system', methods=['POST'])
 def get_compatible_smartphones_with_system():
 	smartphones_data = request.get_json()
-	smartphones = get_compatible_smartphones.main(smartphones_data["smartphones"])
+	smartphones = get_compatible_smartphones.main(smartphones_data)
 	return jsonify({'smartphones': smartphones})
