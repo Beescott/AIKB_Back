@@ -1,5 +1,6 @@
 import sys, os
 from flask import Blueprint, jsonify, request
+import core.GraphDBRequests.SmartphoneRequest as SmartphoneRequest
 
 sys.path.append('/')
 sys.path.append('..')
@@ -9,6 +10,7 @@ from core import get_smartphones_from_search as get_smartphones_from_search
 from core import insert_latest_smartphones as insert_latest_smartphones
 from core import get_compatible_smartphones as get_compatible_smartphones
 from core import get_connectivity_from_smartphones_query as get_connectivity_from_smartphones_query
+from core.Smartphone import Smartphone
 
 main = Blueprint('main', __name__)
 
@@ -41,9 +43,16 @@ def get_compatible_smartphones_with_system():
 	smartphones_data = request.get_json()
 	smartphones = get_compatible_smartphones.main(smartphones_data)
 	return jsonify({'smartphones': smartphones})
-
+@main.route('/post_new_smartphone', methods=['POST'])
+def post_new_smartphone():
+	smartphone_data = request.get_json()['smartphone']
+	smartphone = Smartphone(smartphone_data['name'])
+	smartphone.format(smartphone_data)
+	SmartphoneRequest.insert_phone(smartphone)
+	return "Done"
 @main.route('/get_connectivity_from_smartphones', methods=['POST'])
 def get_connectivity_from_smartphones():
 	smartphones_data = request.get_json()
 	connectivities = get_connectivity_from_smartphones_query.main(smartphones_data)
 	return jsonify({'connectivities': connectivities})
+
