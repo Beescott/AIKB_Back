@@ -43,6 +43,7 @@ def get_compatible_smartphones_with_system():
 	smartphones_data = request.get_json()
 	smartphones = get_compatible_smartphones.main(smartphones_data)
 	return jsonify({'smartphones': smartphones})
+
 @main.route('/post_new_smartphone', methods=['POST'])
 def post_new_smartphone():
 	smartphone_data = request.get_json()['smartphone']
@@ -50,9 +51,9 @@ def post_new_smartphone():
 	smartphone.format(smartphone_data)
 	SmartphoneRequest.insert_phone(smartphone)
 	return "Done"
+
 @main.route('/get_connectivity_from_smartphones', methods=['POST'])
 def get_connectivity_from_smartphones():
 	smartphones_data = request.get_json()
 	connectivities = get_connectivity_from_smartphones_query.main(smartphones_data)
 	return jsonify({'connectivities': connectivities})
-
