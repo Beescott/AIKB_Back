@@ -31,6 +31,9 @@ class Smartphone:
         self.formated_connectivities['Radio'] = unformated_api['radio'] if 'radio' in unformated_api else 'No'
         self.formated_connectivities['OS'] = unformated_api['os'] if 'os' in unformated_api else 'No'
         self.formated_connectivities['NFC'] = unformated_api['nfc'] if 'nfc' in unformated_api else 'No'
+        for i in self.formated_connectivities:
+            if self.formated_connectivities[i] == '':
+                self.formated_connectivities[i] = 'No'
 
     def format_version(self):
         # Format bluetooth to get only the version
@@ -80,5 +83,7 @@ class Smartphone:
                 self.formated_version['Edge_4G'] = '4G'
 
     def display(self):
+        print("######################################################################################################")
+        print("Smartphone name : " + self.name)
         for information in self.formated_connectivities:
             print(information, self.formated_connectivities[information])

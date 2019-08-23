@@ -49,6 +49,8 @@ def post_new_smartphone():
 	smartphone_data = request.get_json()['smartphone']
 	smartphone = Smartphone(smartphone_data['name'])
 	smartphone.format(smartphone_data)
+	smartphone.format_version()
+	smartphone.display()
 	SmartphoneRequest.insert_phone(smartphone)
 	return "Done"
 
