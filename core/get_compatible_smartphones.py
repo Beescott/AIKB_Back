@@ -2,6 +2,9 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 import core.config as config
 
 def main(smartphones_data):
+    """
+    Get compatible smartphone with given system
+    """
     print(smartphones_data)
     sparql = SPARQLWrapper(config.graphDB_select_link)
     sparqlQuery = """

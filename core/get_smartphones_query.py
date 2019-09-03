@@ -2,6 +2,9 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 import core.config as config
 
 def main():
+	"""
+	Get the id and name of all the smartphones
+	"""
 	sparql = SPARQLWrapper(config.graphDB_select_link)
 	sparql.setQuery("""
 	    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>

@@ -2,6 +2,9 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 import core.config as config
 
 def main(smartphone_data):
+    """
+    Get smartphone with some letters in the name
+    """
     first_letters = smartphone_data["name"]
     sparql = SPARQLWrapper(config.graphDB_select_link)
     sparql.setQuery("""

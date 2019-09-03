@@ -2,6 +2,9 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 import core.config as config
 
 def main(smartphone_data):
+    """
+    Get all the connectivity shared between two smartphones
+    """
     smartphone_names = []
     for smartphone in smartphone_data["smartphones"] :
         smartphone_names.append(smartphone["id"])
